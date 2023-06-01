@@ -19,14 +19,34 @@
                     <div>
                         Posted on : {{ useDateFormat(addjob.created_at, 'DD-MM-YYYY').value }}
                     </div>
-                    <Link :href="route('user.applicant.create')">
-                    <div class="bg-green-300 p-1 w-16 rounded-lg  text-center mb-2 hover:bg-green-400">
+                    <Link :href="route('user.applicant.create', {
+                        job_title: addjob.job_title
+                    })">
+                    <div class="bg-gray-300 p-1 w-16 mx-2 rounded-lg  text-center hover:bg-gray-400 hover:text-white">
                         <Button class="text-sm">
                             Apply
                         </Button>
                     </div>
                     </Link>
                 </div>
+
+                <!-- For id -->
+                <!-- <div class="flex justify-between mx-3">
+                    <div>
+                        Posted on : {{ useDateFormat(addjob.created_at, 'DD-MM-YYYY').value }}
+                    </div>
+                    <Link :href="route('user.applicant.create', {
+                        job_id: addjob.id
+                    })">
+                    <div class="bg-green-300 p-1 w-16 rounded-lg  text-center mb-2 hover:bg-green-400">
+                        <Button class="text-sm">
+                            Apply
+                        </Button>
+                    </div>
+                    </Link>
+                </div> -->
+
+
             </div>
             <!-- <div class="bg-yellow-300">
 

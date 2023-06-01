@@ -1,175 +1,248 @@
 <template>
-    <form>
-        <div class="container grid grid-cols-12 gap-4 mx-auto">
-            <div class="col-span-12 text-center py-8">
-                Fill up your profiles
-            </div>
-            <div class="col-span-4 mb-5 mx-4">
-                <label for="" class="block w-full">Name</label>
-                <input class="block w-full border border-gray-300 rounded-lg" type="text" name="" id="">
-            </div>
-            <div class="col-span-4 mb-5 mx-4">
-                <label for="" class="block w-full">Email</label>
-                <input class="block w-full border border-gray-300 rounded-lg" type="text" name="" id="">
-            </div>
-            <div class="col-span-4 mb-5 mx-4">
-                <label for="" class="block w-full">Contact</label>
-                <input class="block w-full border border-gray-300 rounded-lg" type="text" name="" id="">
-            </div>
-            <div class="col-span-6 mb-5 mx-4">
-                <label for="" class="block w-full">Qualification</label>
-                <!-- <input class="block w-full border border-gray-300 rounded-lg" type="text" name="" id=""> -->
-                <select class="block w-full border border-gray-300 rounded-lg text-center" name="" id="">
-                    <option value="null">-- select --</option>
-                    <option value="Master of Arts">Master of Arts</option>
-                    <option value="Master of Social Works">Master of Social Works</option>
-                    <option value="Master of Science">Master of Science</option>
-                    <option value="Bachelor of Arts">Bachelor of Arts</option>
-                    <option value="Bachelor of Social Works">Bachelor of Social Works</option>
-                </select>
-            </div>
-            <div class="col-span-6 mb-5 mx-4">
-                <label for="" class="block w-full">Percentage Obtained</label>
-                <input class="block w-full border border-gray-300 rounded-lg" type="text" name="" id="">
-            </div>
-            <div class="col-span-6 mb-5 mx-4">
-                <label for="" class="block w-full">Aadhaar No.</label>
-                <input class="block w-full border border-gray-300 rounded-lg" type="text" name="" id="">
-            </div>
-            <!-- <div class="col-span-6 mb-5 mx-4">
-                <label for="" class="block w-full">Passport Photo</label>
-                <input class="block w-full border border-gray-300 rounded-lg" type="text" name="" id="">
-            </div> -->
-            <div class="col-span-12 mb-5 mx-4">
-                <label for="" class="block w-full">Resume / CV</label>
-                <input class="block w-full border border-gray-300 rounded-lg" type="text" name="" id="">
-            </div>
-            <div class="col-span-12 mx-auto">
-                <button type="submit" class="w-full bg-gray-300 p-2 mx-5 rounded-lg">Apply</button>
+    <form @submit.prevent="apply">
+        <div class="min-h-screen flex flex-col items-center">
+            <div class="py-3 text-lg">Fill up your profile</div>
+            <div
+                class="max-w-2xl w-full mx-auto bg-gray-50 rounded-lg p-7 space-y-7"
+            >
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" for="name">Name</label>
+                    <input
+                        v-model="form.name"
+                        class="border border-gray-300 rounded-lg"
+                        type="text"
+                    />
+                    <div v-if="form.errors.name" class="text-sm text-red-400">
+                        {{ form.errors.name }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" for="email">Email</label>
+                    <input
+                        v-model="form.email"
+                        class="border border-gray-300 rounded-lg"
+                        type="email"
+                    />
+                    <div v-if="form.errors.email" class="text-sm text-red-400">
+                        {{ form.errors.email }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" for="contact">Contact</label>
+                    <input
+                        v-model="form.contact"
+                        class="border border-gray-300 rounded-lg"
+                        type="number"
+                    />
+                    <div
+                        v-if="form.errors.contact"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.contact }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" for="qualification"
+                        >Qualification</label
+                    >
+                    <!-- <input v-model="form.qualification" class="border border-gray-300 rounded-lg" type="text"> -->
+                    <select
+                        v-model="form.qualification"
+                        class="block w-full border border-gray-300 rounded-lg text-center"
+                        name=""
+                        id=""
+                    >
+                        <option value="null">-- select --</option>
+                        <option
+                            v-for="editqualification in editqualifications"
+                            :value="editqualification.qualification"
+                        >
+                            {{ editqualification.qualification }}
+                        </option>
+                    </select>
+                    <div
+                        v-if="form.errors.qualification"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.qualification }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" for="percentage"
+                        >Percentage</label
+                    >
+                    <input
+                        v-model="form.hslc_mark_percent"
+                        class="border border-gray-300 rounded-lg text-sm"
+                        type="text"
+                        placeholder="HSLC mark percentage (%)"
+                    />
+                    <div
+                        v-if="form.errors.hslc_mark_percent"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.hslc_mark_percent }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <!-- <label class="mb-1 text-sm" for="percentage">Percentage</label> -->
+                    <input
+                        v-model="form.hsslc_mark_percent"
+                        class="border border-gray-300 rounded-lg text-sm"
+                        type="text"
+                        placeholder="HSSLC mark percentage (%)"
+                    />
+                    <div
+                        v-if="form.errors.hsslc_mark_percent"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.hsslc_mark_percent }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <!-- <label class="mb-1 text-sm" for="percentage">Percentage</label> -->
+                    <input
+                        v-model="form.graduate_mark_percent"
+                        class="border border-gray-300 rounded-lg text-sm"
+                        type="text"
+                        placeholder="Graduate mark percentage (%)"
+                    />
+                    <div
+                        v-if="form.errors.graduate_mark_percent"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.graduate_mark_percent }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <!-- <label class="mb-1 text-sm" for="percentage">Percentage</label> -->
+                    <input
+                        v-model="form.post_graduate_mark_percent"
+                        class="border border-gray-300 rounded-lg text-sm"
+                        type="text"
+                        placeholder="Post-Graduate mark percentage (%)"
+                    />
+                    <div
+                        v-if="form.errors.post_graduate_mark_percent"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.post_graduate_mark_percent }}
+                    </div>
+                </div>
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" for="aadhaar"
+                        >Aadhaar no.</label
+                    >
+                    <input
+                        v-model="form.aadhaar"
+                        class="border border-gray-300 rounded-lg"
+                        type="text"
+                    />
+                    <div
+                        v-if="form.errors.aadhaar"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.aadhaar }}
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" for="passport_photo"
+                        >Passport Photo</label
+                    >
+                    <!-- <input v-model="form.passport_photo" class="border border-gray-300 rounded-lg" type="text"> -->
+                    <input
+                        type="file"
+                        name="passport_photo"
+                        id="passport_photo"
+                        multiple
+                        @input="form.passport_photo = $event.target.files[0]"
+                    />
+                    <div
+                        v-if="form.errors.passport_photo"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.passport_photo }}
+                    </div>
+                </div>
+
+                <div class="flex flex-col">
+                    <label class="mb-1 text-sm" for="work_experience"
+                        >Work Experience</label
+                    >
+                    <!-- <input v-model="form.work_experience" class="border border-gray-300 rounded-lg" type="text"> -->
+                    <textarea
+                        v-model="form.work_experience"
+                        class="border border-gray-300 rounded-lg"
+                        name=""
+                        id=""
+                        cols="93"
+                        rows="3"
+                    ></textarea>
+                    <div
+                        v-if="form.errors.work_experience"
+                        class="text-sm text-red-400"
+                    >
+                        {{ form.errors.work_experience }}
+                    </div>
+                </div>
+                <div>
+                    <button
+                        class="w-full bg-gray-300 hover:bg-gray-400 hover:text-white py-2 text-center rounded-lg"
+                    >
+                        Apply
+                    </button>
+                </div>
             </div>
         </div>
     </form>
 </template>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- User registration page  -->
-
-<!-- <template>
-    <div class="container mx-auto flex items-center justify-center">
-        <form @submit.prevent="register">
-            <div class="text-center py-3 text-3xl">
-                Registration Page
-            </div>
-            <div class="container m-3">
-                <div class="mb-3">
-                    <label class="block w-full" for="name">Name</label>
-                    <input v-model="form.name" class="block w-96 border-gray-300 shadow-lg rounded-lg" type="text">
-                    <div v-if="form.errors.name" class="text-red-400 text-sm">
-                        {{ form.errors.name }}
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="block w-full" for="email">Email</label>
-                    <input v-model="form.email" class="block w-96 border-gray-300 shadow-lg rounded-lg" type="text">
-                    <div v-if="form.errors.email" class="text-red-400 text-sm">
-                        {{ form.errors.email }}
-                    </div>
-                </div>
-                <div class="mb-3">
-                    <label class="block w-full" for="contact">Contact</label>
-                    <input v-model="form.contact" class="block w-96 border-gray-300 shadow-lg rounded-lg" type="text">
-                    <div v-if="form.errors.contact" class="text-red-400 text-sm">
-                        {{ form.errors.contact }}
-                    </div>
-                </div>
-                <div class="mb-5">
-                    <label class="block w-full" for="qualification">Educational Qualification</label>
-                    <select v-model="form.qualification" name="qualification" id="qualification"
-                        class="block w-96 border-gray-300 shadow-lg rounded-lg text-center">
-                        <option value="null">-- Please select --</option>
-                        <option v-for="editqualification in editqualifications" :value="editqualification.qualification">{{
-                            editqualification.qualification }}</option>
-                    </select>
-                    <div v-if="form.errors.qualification" class="text-red-400 text-sm">
-                        {{ form.errors.qualification }}
-                    </div>
-                </div>
-
-
-
-                <div class="mb-3 flex flex-row items-center">
-                    <label class="w-72" for="text">Mark in Percentage (%)</label>
-                    <input v-model="form.percentage" class="w-24 border-gray-300 shadow-lg rounded-lg" type="text">
-                    <div v-if="form.errors.percentage" class="text-red-400 text-sm">
-                        {{ form.errors.percentage }}
-                    </div>
-                </div>
-
-
-
-                <div class="mb-3">
-                    <label class="block w-full" for="work_experience">Work Experience (if any)</label>
-                    <textarea v-model="form.work_experience" name="form.work_experience" id="form.work_experience" cols="46"
-                        rows="4" class="block w-96 border-gray-300 shadow-lg rounded-lg"></textarea>
-                    <div v-if="form.errors.work_experience" class="text-red-400 text-sm">
-                        {{ form.errors.work_experience }}
-                    </div>
-                </div>
-                <div class="mb-2 mt-12">
-                    <button class="block w-96 bg-blue-300 py-2 rounded-lg shadow-lg">Submit</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</template>
-
 <script setup>
-import { useForm } from '@inertiajs/vue3'
+import { useForm, router } from "@inertiajs/vue3";
 
 defineProps({
-    editqualifications: Array
-})
+    editqualifications: Array,
+});
 
 const form = useForm({
     name: null,
     email: null,
     contact: null,
     qualification: null,
-    percentage: null,
-    work_experience: null
-})
+    hslc_mark_percent: null,
+    hsslc_mark_percent: null,
+    graduate_mark_percent: null,
+    post_graduate_mark_percent: null,
+    aadhaar: null,
+    passport_photo: null,
+    // resume: null,
+    work_experience: null,
+    job_title: null,
+    // job_id: null,
+});
 
-const register = () => {
-    form.post(route('user.applicant.store'))
-    form.name = '',
-        form.email = '',
-        form.contact = '',
-        form.qualification = '',
-        form.percentage = '',
-        form.work_experience = ''
-}
+const apply = () => {
+    // router?.page?.props?.job_id
 
-</script> -->
+    form.job_title = route().params.job_title;
+    // form.job_id = route().params.job_id;
+
+    form.post(route("user.applicant.store"), {
+        forceFormData: true,
+    });
+    // form.job_id = ''
+    form.name = "";
+    form.email = "";
+    form.contact = "";
+    form.qualification = "";
+    form.hslc_mark_percent = "";
+    form.hsslc_mark_percent = "";
+    form.graduate_mark_percent = "";
+    form.post_graduate_mark_percent = "";
+    form.aadhaar = "";
+    form.passport_photo = "";
+    form.work_experience = "";
+    // form.resume = ''
+};
+</script>

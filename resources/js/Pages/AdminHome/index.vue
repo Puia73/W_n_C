@@ -52,25 +52,41 @@
             </div>
         </div>
         <div class="col-span-2 border border-gray-400 rounded-lg">
-            <Link>
             <div>
-                <div class="mt-10 text-start m-3 text-xl font-serif">
-                    Application status
-                </div>
-                <div class="text-4xl text-start m-3">
-                    0
-                </div>
-                <div>
-                    <Link :href="route('admin.app-status.index')">
-                    <div class="text-sm text-start mt-1 m-3 hover:text-blue-400">
-                        Click for details
+
+                <!-- <div class="grid grid-cols-2 gap-2"> -->
+                <div class="">
+                    <div class="mt-10 text-start m-3 text-xl font-serif">
+                        Application Status
+                        <div class="text-4xl text-start py-2">
+                            {{ applicantStatus }}
+                        </div>
+                        <Link :href="route('admin.app-status.index')">
+                        <div class="text-sm text-start mt-1 hover:text-blue-400">
+                            Click for details
+                        </div>
+                        </Link>
                     </div>
-                    </Link>
+                    <!-- <div class="mt-10 text-end m-3 text-xl font-serif">
+                        Job opening
+                        <div class="text-4xl text-end py-2">
+                            {{ jobsOpening }}
+                        </div>
+                        <Link :href="route('admin.jobs.index')">
+                        <div class="text-sm text-end mt-1">
+                            Click for details
+                        </div>
+                        </Link>
+                    </div> -->
                 </div>
+
+
+
                 <br><br>
                 <hr>
+                <Link :href="route('admin.app-status.index')">
                 <div class="flex justify-between font-medium text-start m-3">
-                    View details
+                    View Details
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-4 h-4">
@@ -78,14 +94,14 @@
                         </svg>
                     </div>
                 </div>
+                </Link>
             </div>
-            </Link>
         </div>
         <div class="col-span-2 border border-gray-400 rounded-lg">
             <Link>
             <div>
                 <div class="mt-10 text-start m-3 text-xl font-serif">
-                    Registered User
+                    kjhjh
                 </div>
                 <div class="text-4xl text-start m-3">
                     asdf
@@ -119,6 +135,7 @@ export default {
 import { Link } from '@inertiajs/vue3';
 defineProps({
     addjob: Object,
-    jobsOpening: Array
+    jobsOpening: Array,
+    applicantStatus: Array
 })
 </script>

@@ -10,12 +10,27 @@ class JobController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $filters = $request->only(
+            'job_title',
+            'department'
+        );
+
+        $query = Addjob::orderBy('created_at', 'asc')->when(
+            $filters['job_title'] ?? false,
+            fn ($query, $value) => $query->where('job_title', 'like', "%{$value}%")
+        )->when(
+            $filters['department'] ?? false,
+            fn ($query, $value) => $query->where('department', 'like', "%{$value}%")
+        )
+            ->Paginate(5)->withQueryString();
+
         return inertia(
             'AdminHome/Jobs/index',
             [
-                'addjobs' => Addjob::all()
+                'addjobs' => $query,
+                'filters' => $filters
             ]
         );
     }

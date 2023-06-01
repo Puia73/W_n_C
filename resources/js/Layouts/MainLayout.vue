@@ -10,11 +10,16 @@
                     Home
                 </ul>
                 </Link>
-                <Link :href="route('login')">
+                <!-- <Link :href="route('admin.home.index')">
+                <ul>
+                    Admin Home
+                </ul>
+                </Link> -->
+                <!-- <Link :href="route('login')">
                 <ul>
                     Admin Panel
                 </ul>
-                </Link>
+                </Link> -->
             </div>
         </nav>
     </div>

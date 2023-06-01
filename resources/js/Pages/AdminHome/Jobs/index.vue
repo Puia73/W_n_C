@@ -4,8 +4,12 @@
     </div> -->
 
 
-    <div class="mt-5 mb-8 text-lg text-center underline uppercase">
+    <div class="mt-3 mb-8 text-lg text-center underline uppercase">
         Job opening
+    </div>
+
+    <div>
+        <Jobfilter :filters="filters" />
     </div>
 
     <div class="m-3">
@@ -22,10 +26,11 @@
                     <th></th>
                     <th></th>
                     <th></th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="addjob in addjobs" :key="addjob.id" class="border text-start hover:bg-gray-100 text-sm">
+                <tr v-for="addjob in addjobs.data" :key="addjob.id" class="border text-start hover:bg-gray-100 text-sm">
                     <td class="p-2">{{ addjob.id }}</td>
                     <td>{{ addjob.job_title }}</td>
                     <td>{{ addjob.No_of_post }}</td>
@@ -34,8 +39,13 @@
                     <td>{{ addjob.job_type }}</td>
                     <td>{{ addjob.date_of_sub }}</td>
                     <td>
+                        <Link :href="route('admin.applicant-list.index', addjob.id)">
+                        Applicant list
+                        </Link>
+                    </td>
+                    <td>
                         <Link :href="route('admin.jobs.show', addjob.id)">
-                        Details
+                        Job details
                         </Link>
                     </td>
                     <td>
@@ -52,28 +62,33 @@
             </tbody>
         </table>
     </div>
-    <!-- <div v-if="admincategories.data.length" class="w-full flex justify-center mt-5 mb-8">
-        <Paginate :links="admincategories.links" />
+    <div v-if="addjobs.data.length" class="w-full flex justify-center mt-5 mb-8">
+        <Paginate :links="addjobs.links" />
     </div>
     <div v-else
-        class="text-center mt-20 border border-blue-200 p-2 m-80 hover:bg-gradient-to-r from-blue-400 via-blue-100 to-blue-400 text-sm font-medium shadow-lg">
-        Category dah luh sa engmah a awm lo!
-    </div> -->
+        class="text-center mt-20 border border-gray-200 p-2 m-80 hover:bg-gradient-to-r from-gray-400 via-gray-100 to-gray-400 text-sm font-medium shadow-lg">
+        No result!
+    </div>
 </template>
 
 <script>
 import AdminLayout from '@/Layouts/AdminLayout.vue';
+import Jobfilter from '@/Layouts/Component/Jobfilter.vue';
 
 export default {
-    layout: AdminLayout
+    layout: AdminLayout,
+    components: { Jobfilter }
 }
 </script>
 
 
 <script setup>
 import { Link } from '@inertiajs/vue3';
+import Paginate from '@/Layouts/Component/Paginate.vue';
+
 
 defineProps({
-    addjobs: Object
+    addjobs: Object,
+    filters: Object,
 })
 </script>

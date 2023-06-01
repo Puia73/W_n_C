@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Addjob;
+use App\Models\Applicant;
+use App\Models\EditDistrict;
 use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
@@ -13,9 +15,11 @@ class AdminHomeController extends Controller
     public function index()
     {
         $jobsOpening = Addjob::count();
+        $applicantStatus = Applicant::count();
 
         return inertia(
-            'AdminHome/index', compact('jobsOpening')
+            'AdminHome/index',
+            compact('jobsOpening', 'applicantStatus')
             // [
             //     'addjobs' => Addjob::all()
             // ]
@@ -27,7 +31,12 @@ class AdminHomeController extends Controller
      */
     public function create()
     {
-        return inertia('AdminHome/create');
+        return inertia(
+            'AdminHome/create',
+            [
+                'edit_districts' => EditDistrict::all()
+            ]
+        );
     }
 
     /**
@@ -67,7 +76,8 @@ class AdminHomeController extends Controller
                 // 'addjob' => $addjob
                 // 'addjobs' => $query
                 // 'addjob' => $addjob
-                'addjobs'=> Addjob::all()
+                'addjobs' => Addjob::all(),
+                'applicants' => Applicant::all()
             ]
         );
     }

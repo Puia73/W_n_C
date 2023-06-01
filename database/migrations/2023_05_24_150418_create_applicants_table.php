@@ -17,8 +17,14 @@ return new class extends Migration
             $table->tinyText('email');
             $table->tinyText('contact');
             $table->tinyText('qualification');
-            $table->tinyText('percentage');
+            $table->tinyText('hslc_mark_percent');
+            $table->tinyText('hsslc_mark_percent')->nullable();
+            $table->tinyText('graduate_mark_percent')->nullable();
+            $table->tinyText('post_graduate_mark_percent')->nullable();
+            $table->longText('aadhaar');
+            $table->longText('passport_photo');
             $table->longText('work_experience')->nullable();
+            // $table->longText('resume')->nullable();
             $table->timestamps();
         });
     }

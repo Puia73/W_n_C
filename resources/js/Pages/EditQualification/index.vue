@@ -1,11 +1,11 @@
 <template>
     <div class="grid grid-cols-6">
         <div class="m-3 col-span-3">
-            <div class="bg-blue-300 p-1 m-3 w-32 text-center rounded-lg shadow-lg">
+            <!-- <div class="bg-blue-300 p-1 m-3 w-32 text-center rounded-lg shadow-lg">
                 <Link :href="route('admin.qualification.create')">
                 Add new
                 </Link>
-            </div>
+            </div> -->
             <!-- <div v-for="editqualification in editqualifications">
             {{ editqualification.qualification }}
         </div> -->
@@ -30,7 +30,6 @@
                                 </Link>
                             </td>
 
-                            <!-- <td>{{ useDateFormat(admincategory.created_at, 'DD-MM-YYYY').value }}</td> -->
                             <td>
                                 <Link :href="route('admin.qualification.edit', editqualification.id)">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

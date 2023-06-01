@@ -75,7 +75,7 @@ class EditQualificationController extends Controller
     {
         $editqualification->update(
             $request->validate([
-                'qualification'=> 'required'
+                'qualification' => 'required'
             ])
         );
 

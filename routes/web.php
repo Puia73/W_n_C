@@ -6,7 +6,9 @@ use App\Http\Controllers\AdminnPageController;
 use App\Http\Controllers\AdminPageController;
 use App\Http\Controllers\AdminQualificationController;
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\ApplicantListController;
 use App\Http\Controllers\AppStatusController;
+use App\Http\Controllers\EditDistrictController;
 use App\Http\Controllers\EditQualificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -31,7 +33,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/', fn () => redirect('user/applicant/create'));
+Route::get('/', fn () => redirect('user/home/'));
 
 Route::resource('home', HomeController::class)
     ->only('index');
@@ -43,7 +45,7 @@ Route::resource('home', HomeController::class)
 
 Route::prefix('user')
     ->name('user.')
-    ->middleware('auth')
+    // ->middleware('auth')
     ->group(function () {
         Route::resource('applicant', ApplicantController::class);
     });
@@ -54,7 +56,7 @@ Route::prefix('user')
 
 Route::prefix('user')
     ->name('user.')
-    ->middleware('auth')
+    // ->middleware('auth')
     ->group(function () {
         Route::resource('home', UserHomeController::class)
             ->parameter('home', 'addjob');
@@ -103,7 +105,10 @@ Route::prefix('admin')
             ->only('index', 'create', 'store', 'show');
         Route::resource('jobs', JobController::class)
             ->parameter('jobs', 'addjob');
-        Route::resource('app-status', AppStatusController::class);
+        Route::resource('app-status', AppStatusController::class)
+            ->parameter('app-status', 'applicant');
+        Route::resource('applicant-list', ApplicantListController::class);
+        Route::resource('edit-district', EditDistrictController::class);
     });
 
 
