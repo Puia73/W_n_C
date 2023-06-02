@@ -109,6 +109,8 @@ Route::prefix('admin')
             ->parameter('app-status', 'applicant');
         Route::resource('applicant-list', ApplicantListController::class);
         Route::resource('edit-district', EditDistrictController::class);
+        // Route::resource('applicant-list', ApplicantListController::class)
+        //     ->parameter('applicant-list', 'id');
     });
 
 

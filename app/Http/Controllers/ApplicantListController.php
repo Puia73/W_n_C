@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Addjob;
 use App\Models\Applicant;
 use Illuminate\Http\Request;
 
@@ -39,9 +40,20 @@ class ApplicantListController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $title, Applicant $applicant)
     {
-        //
+
+        $query = Applicant::where('job_title', $title)->get();
+
+        return inertia(
+            'AdminHome/ApplicantList/show',
+            [
+                'applicants' => $query
+                // Applicant::where('job_title', $title)->get()
+            ]
+        );
+
+        // return Applicant::where('job_title', $title)->get();
     }
 
     /**

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Addjob;
 use App\Models\Applicant;
 use App\Models\EditDistrict;
+use App\Models\Editqualification;
 use Illuminate\Http\Request;
 
 class AdminHomeController extends Controller
@@ -31,10 +32,12 @@ class AdminHomeController extends Controller
      */
     public function create()
     {
+        // return Editqualification::all();
         return inertia(
             'AdminHome/create',
             [
-                'edit_districts' => EditDistrict::all()
+                'editqualifications' => Editqualification::all(),
+                'edit_districts' => EditDistrict::all(),
             ]
         );
     }
@@ -49,7 +52,7 @@ class AdminHomeController extends Controller
                 'job_title' => 'required',
                 'No_of_post' => 'required',
                 'department' => 'required',
-                'district' => 'required',
+                'district' => 'required->unique:addjobs',
                 'description' => 'required',
                 'edu_qualification' => 'required',
                 // 'experience' => 'required',

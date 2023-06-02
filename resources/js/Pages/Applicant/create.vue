@@ -232,17 +232,17 @@ const apply = () => {
         forceFormData: true,
     });
     // form.job_id = ''
-    form.name = "";
-    form.email = "";
-    form.contact = "";
-    form.qualification = "";
-    form.hslc_mark_percent = "";
-    form.hsslc_mark_percent = "";
-    form.graduate_mark_percent = "";
-    form.post_graduate_mark_percent = "";
-    form.aadhaar = "";
-    form.passport_photo = "";
-    form.work_experience = "";
+    // form.name = "";
+    // form.email = "";
+    // form.contact = "";
+    // form.qualification = "";
+    // form.hslc_mark_percent = "";
+    // form.hsslc_mark_percent = "";
+    // form.graduate_mark_percent = "";
+    // form.post_graduate_mark_percent = "";
+    // form.aadhaar = "";
+    // form.passport_photo = "";
+    // form.work_experience = "";
     // form.resume = ''
 };
 </script>

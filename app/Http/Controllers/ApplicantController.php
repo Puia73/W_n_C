@@ -56,7 +56,7 @@ class ApplicantController extends Controller
                 'hsslc_mark_percent' => '',
                 'graduate_mark_percent' => '',
                 'post_graduate_mark_percent' => '',
-                'aadhaar' => 'required',
+                'aadhaar' => 'required|unique:applicants',
                 'passport_photo' => 'required',
                 'work_experience' => '',
                 // 'resume' => 'required',

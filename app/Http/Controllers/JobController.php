@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AddJob;
+use App\Models\Addjob;
 use Illuminate\Http\Request;
 
 class JobController extends Controller
