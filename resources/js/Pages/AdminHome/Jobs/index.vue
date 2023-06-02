@@ -29,11 +29,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    v-for="addjob in addjobs.data"
-                    :key="addjob.id"
-                    class="border text-start hover:bg-gray-100 text-sm"
-                >
+                <tr v-for="addjob in addjobs.data" :key="addjob.id" class="border text-start hover:bg-gray-100 text-sm">
                     <td class="p-2">{{ addjob.id }}</td>
                     <td>{{ addjob.job_title }}</td>
                     <td>{{ addjob.No_of_post }}</td>
@@ -42,50 +38,38 @@
                     <td>{{ addjob.job_type }}</td>
                     <td>{{ addjob.date_of_sub }}</td>
                     <td>
-                        <Link
-                            :href="
-                                route(
-                                    'admin.applicant-list.show',
-                                    addjob.job_title
-                                )
-                            "
-                        >
-                            Applicant list
+                        <Link :href="route(
+                            'admin.applicant-list.show',
+                            addjob.id
+                        )
+                            ">
+                        Applicant list
                         </Link>
                     </td>
                     <td>
                         <Link :href="route('admin.jobs.show', addjob.id)">
-                            Job details
+                        Job details
                         </Link>
                     </td>
                     <td>
                         <Link :href="route('admin.jobs.edit', addjob.id)">
-                            Edit
+                        Edit
                         </Link>
                     </td>
                     <td>
-                        <Link
-                            :href="route('admin.jobs.destroy', addjob.id)"
-                            method="delete"
-                            as="button"
-                        >
-                            Delete
+                        <Link :href="route('admin.jobs.destroy', addjob.id)" method="delete" as="button">
+                        Delete
                         </Link>
                     </td>
                 </tr>
             </tbody>
         </table>
     </div>
-    <div
-        v-if="addjobs.data.length"
-        class="w-full flex justify-center mt-5 mb-8"
-    >
+    <div v-if="addjobs.data.length" class="w-full flex justify-center mt-5 mb-8">
         <Paginate :links="addjobs.links" />
     </div>
-    <div
-        v-else
-        class="text-center mt-20 border border-gray-200 p-2 m-80 hover:bg-gradient-to-r from-gray-400 via-gray-100 to-gray-400 text-sm font-medium shadow-lg"
-    >
+    <div v-else
+        class="text-center mt-20 border border-gray-200 p-2 m-80 hover:bg-gradient-to-r from-gray-400 via-gray-100 to-gray-400 text-sm font-medium shadow-lg">
         No result!
     </div>
 </template>

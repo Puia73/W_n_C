@@ -40,10 +40,9 @@ class ApplicantListController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $title, Applicant $applicant)
+    public function show(string $job_id, Applicant $applicant)
     {
-
-        $query = Applicant::where('job_title', $title)->get();
+        $query = Applicant::where('job_id', $job_id)->get();
 
         return inertia(
             'AdminHome/ApplicantList/show',

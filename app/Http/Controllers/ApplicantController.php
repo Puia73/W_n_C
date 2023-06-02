@@ -6,6 +6,7 @@ use App\Models\Addjob;
 use App\Models\Applicant;
 use App\Models\Editqualification;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class ApplicantController extends Controller
 {
@@ -56,12 +57,12 @@ class ApplicantController extends Controller
                 'hsslc_mark_percent' => '',
                 'graduate_mark_percent' => '',
                 'post_graduate_mark_percent' => '',
-                'aadhaar' => 'required|unique:applicants',
+                'job_id' => 'required',
+                'aadhaar' =>  ['required', Rule::unique('applicants')->where('job_id', $request->job_id)],
                 'passport_photo' => 'required',
                 'work_experience' => '',
                 // 'resume' => 'required',
-                'job_title' => 'required',
-                // 'job_id' => 'required',
+                // 'job_title' => 'required',
             ],
         );
 
@@ -88,8 +89,8 @@ class ApplicantController extends Controller
                 'passport_photo' => $passport_path,
                 'work_experience' => $request->work_experience,
                 // 'resume' => 'required',
-                'job_title' => $request->job_title,
-                // 'job_id' => $request->job_id,
+                // 'job_title' => $request->job_title,
+                'job_id' => $request->job_id,
             ],
 
         );
@@ -118,7 +119,7 @@ class ApplicantController extends Controller
 
         // );
 
-        return redirect()->route('user.applicant.index')->with('msg', 'You have registered successfully!');
+        return redirect()->route('user.home.index')->with('msg', 'You have registered successfully!');
     }
 
     /**

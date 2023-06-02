@@ -39,18 +39,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    v-for="applicant in applicants"
-                    class="border text-start hover:bg-gray-100 text-sm"
-                >
+                <tr v-for="applicant in applicants" class="border text-start hover:bg-gray-100 text-sm">
                     <td class="p-2">{{ applicant.id }}</td>
                     <td>{{ applicant.name }}</td>
                     <td>
-                        <img
-                            :src="`/storage/${applicant.passport_photo}`"
-                            alt="Applicant's photo"
-                            class="rounded-lg p-2 w-24 h-24 mx-auto"
-                        />
+                        <img :src="`/storage/${applicant.passport_photo}`" alt="Applicant's photo"
+                            class="rounded-lg p-2 w-24 h-24 mx-auto" />
                     </td>
                     <td>{{ applicant.email }}</td>
                     <td>{{ applicant.contact }}</td>
@@ -68,7 +62,7 @@
                         {{ applicant.post_graduate_mark_percent }}
                     </td>
                     <!-- <td class="text-center">{{ useDateFormat(applicant.created_at, 'DD-MM-YYYY').value }}</td> -->
-                    <td>{{ applicant.aadhaar }}</td>
+                    <td class="text-center">{{ applicant.aadhaar }}</td>
                     <td>{{ applicant.work_experience }}</td>
                     <td>
                         {{

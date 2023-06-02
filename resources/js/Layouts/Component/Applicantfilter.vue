@@ -13,8 +13,8 @@
 
                     <input v-model="filterForm.name" type="text" placeholder="Applicant Name"
                         class="border border-gray-300 text-sm">
-                    <input v-model="filterForm.job_title" type="text" placeholder="Job title"
-                        class="rounded-tr-lg rounded-br-lg border border-gray-300 text-sm">
+                    <!-- <input v-model="filterForm.job_title" type="text" placeholder="Job title"
+                        class="rounded-tr-lg rounded-br-lg border border-gray-300 text-sm"> -->
                 </div>
                 <button type="submit" class="w-20 bg-gray-200 p-2 rounded-md hover:bg-gray-400 text-sm">Search</button>
                 <button @click="clear" type="reset"
@@ -35,7 +35,7 @@ const props = defineProps({
 const filterForm = useForm({
     name: props.filters.name ?? null,
     qualification: props.filters.qualification ?? null,
-    job_title: props.filters.job_title ?? null
+    // job_title: props.filters.job_title ?? null
 })
 
 const filter = () => {
@@ -48,7 +48,7 @@ const filter = () => {
 const clear = () => {
     filterForm.name = null,
         filterForm.qualification = null,
-        filterForm.job_title = null
-    filter()
+        // filterForm.job_title = null
+        filter()
 }
 </script>

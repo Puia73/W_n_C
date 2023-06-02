@@ -21,7 +21,7 @@
                     <th class="border border-gray-400 text-center">Graduate (%)</th>
                     <th class="border border-gray-400 text-center">Post Graduate (%)</th>
                     <th class="text-center">Date of Submission</th>
-                    <th>Job Title</th>
+                    <!-- <th>Job Title</th> -->
                     <th></th>
                     <th></th>
                     <th></th>
@@ -41,7 +41,7 @@
                     <td class="border border-gray-400 text-center">{{ applicant.post_graduate_mark_percent }}
                     </td>
                     <td class="text-center">{{ useDateFormat(applicant.created_at, 'DD-MM-YYYY').value }}</td>
-                    <td>{{ applicant.job_title }}</td>
+                    <!-- <td>{{ applicant.job_id }}</td> -->
                     <td>
                         <Link :href="route('admin.app-status.show', applicant.id)">
                         Details

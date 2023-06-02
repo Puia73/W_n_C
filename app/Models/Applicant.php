@@ -24,10 +24,6 @@ class Applicant extends Model
 
     public function job(): BelongsTo
     {
-        return $this->belongsTo(
-            \App\Models\Addjob::class,
-            'job_id',
-            'job_title'
-        );
+        return $this->belongsTo(\App\Models\Addjob::class);
     }
 }

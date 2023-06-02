@@ -20,7 +20,7 @@
                         Posted on : {{ useDateFormat(addjob.created_at, 'DD-MM-YYYY').value }}
                     </div>
                     <Link :href="route('user.applicant.create', {
-                        job_title: addjob.job_title
+                        job_title: addjob.job_title, job_id: addjob.id
                     })">
                     <div class="bg-gray-300 p-1 w-16 mx-2 rounded-lg  text-center hover:bg-gray-400 hover:text-white">
                         <Button class="text-sm">
