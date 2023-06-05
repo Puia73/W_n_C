@@ -3,9 +3,9 @@
     <!-- <div v-for="applicant in applicants">
         {{ applicant.name }}
     </div> -->
-    <!-- <pre>
+    <pre>
         {{ applicants }}
-    </pre> -->
+    </pre>
 </template>
 
 <script>

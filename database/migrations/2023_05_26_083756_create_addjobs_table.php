@@ -17,7 +17,7 @@ return new class extends Migration
             $table->tinyText('No_of_post');
             $table->tinyText('department');
             $table->tinyText('district');
-            $table->tinyText('description');
+            $table->longText('description');
             $table->tinyText('edu_qualification');
             // $table->tinyText('experience');
             $table->tinyText('salary');
