@@ -1,8 +1,10 @@
 <template>
     <form @submit.prevent="filter">
-        <div class="m-3">
+        <div class="m-3 grid grid-rows-1">
             <div class="mt-2 flex flex-wrap gap-2 justify-start mr-3">
-                <div class="flex flex-nowrap items-center gap-2">
+                <div
+                    class="xl:flex items-center gap-1 lg:grid grid-rows-2 md:gap-2"
+                >
                     <!-- <select name="Category" id="Category"
                         class="block rounded-tl-lg rounded-bl-lg shadow-sm border-gray-300 text-gray-500 text-sm">
                         <option value="null">-- Qualification --</option>
@@ -13,18 +15,18 @@
                         v-model="filterForm.job_title"
                         type="text"
                         placeholder="Job title"
-                        class="rounded-tl-lg rounded-bl-lg border border-gray-300 text-sm"
+                        class="border border-gray-300 rounded-lg w-full mb-2 lg:border-gray-300 text-sm md:border-gray-300 sm:border-gray-300 sm:mb-2"
                     />
                     <input
                         v-model="filterForm.department"
                         type="text"
                         placeholder="Department"
-                        class="rounded-tr-lg rounded-br-lg border border-gray-300 text-sm"
+                        class="border border-gray-300 rounded-lg w-full mb-2 lg:border-gray-300 text-sm md:border-gray-300 sm:border-gray-300 sm:mb-2"
                     />
                 </div>
                 <button
                     type="submit"
-                    class="w-24 bg-gray-200 p-2 rounded-md hover:bg-gray-400 text-sm flex flex-row justify-evenly items-center text-center"
+                    class="w-24 bg-gray-200 p-2 mb-2 rounded-md hover:bg-gray-400 text-sm flex flex-row justify-evenly items-center text-center"
                 >
                     Search
                     <svg
@@ -45,7 +47,7 @@
                 <button
                     @click="clear"
                     type="reset"
-                    class="w-20 bg-red-500 text-white p-2 rounded-md hover:bg-red-600 text-sm"
+                    class="w-20 bg-red-500 text-white p-2 mb-2 rounded-md hover:bg-red-600 text-sm"
                 >
                     Clear
                 </button>
