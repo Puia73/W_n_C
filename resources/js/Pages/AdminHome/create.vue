@@ -183,7 +183,7 @@
                 </div>
                 <div>
                     <button
-                        class="w-full bg-green-300 py-2 text-center rounded-lg"
+                        class="w-full bg-gray-300 hover:bg-gray-400 py-2 text-center rounded-lg"
                     >
                         Add
                     </button>

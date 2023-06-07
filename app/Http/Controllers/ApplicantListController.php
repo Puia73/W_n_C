@@ -40,14 +40,29 @@ class ApplicantListController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $job_id, Applicant $applicant)
+    public function show(string $job_id, Applicant $applicant, Request $request)
     {
-        $query = Applicant::where('job_id', $job_id)->get();
+        $filters = $request->only([
+            'name'
+        ]);
+
+        $query = Applicant::where('job_id', $job_id)->when(
+            $filters['name'] ?? false,
+            fn ($query, $value) => $query->where('name', 'like', "%{$value}%")
+        )->paginate(5);
+
+        // $query = Applicant::orderBy('created_at', 'asc')->Paginate(0)->withQueryString();
+
+        // if ($filters['name'] ?? false) {
+        //     $query->where('name', $filters['name']);
+        // }
 
         return inertia(
             'AdminHome/ApplicantList/show',
             [
-                'applicants' => $query
+                'applicants' => $query,
+                'filters' => $filters,
+                'job_id' => $job_id,
                 // Applicant::where('job_title', $title)->get()
             ]
         );
